@@ -1,0 +1,12 @@
+{
+  "name": "react-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "cd Benchwarmers-Memes && npm run dev",
+    "build": "cd Benchwarmers-Memes && npm run build",
+    "lint": "cd Benchwarmers-Memes && npm run lint",
+    "preview": "cd Benchwarmers-Memes && npm run preview"
+  }
+}
