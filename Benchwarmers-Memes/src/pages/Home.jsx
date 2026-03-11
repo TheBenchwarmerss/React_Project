@@ -7,6 +7,9 @@ export default function Home() {
   const quotes = useQuotes();
   const images = useImages();
 
+  console.log(quotes);
+  console.log(images);
+
   const content = combineContent(images, quotes);
 
   return (
