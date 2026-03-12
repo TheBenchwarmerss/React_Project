@@ -3,7 +3,7 @@ export async function fetchDuckImages(count = 3) {
 
   for (let i = 0; i < count; i++) {
     requests.push(
-      fetch("https://corsproxy.io/?https://random-d.uk/api/v2/random")
+      fetch(`https://corsproxy.io/?https://random-d.uk/api/v2/random?v=${Date.now()}`)
       .then(res => res.json())
     );
   }
