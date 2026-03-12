@@ -13,17 +13,30 @@ export default function Home() {
   const content = combineContent(images, quotes);
 
   return (
-    <div>
+    <div className="siteWrapper">
 
-      <h1>Duckspiration</h1>
+    <input type="checkbox" id="theme-toggle" />
 
-      {content.map((item, index) => (
-        <div key={index}>
-          <img src={item.image} width="300"/>
-          <p>"{item.quote}"</p>
-          <p>- {item.author}</p>
+    <div class="site-wrapper">
+        <header>
+            <div class="brand">Meme Generator</div>
+            <label for="theme-toggle" class="theme-label">Toggle Dark Mode</label>
+        </header>
+
+        <div class="main-content">
+            <div class="controls">
+              {content.map((item, index) => (
+                <div key={index}>
+                  <img src={item.image} width="700"/>
+                  <p>"{item.quote}"</p>
+                  <p>- {item.author}</p>
+                </div>
+            ))}
+
+                <button type="button">Update Image</button>
+            </div>
         </div>
-      ))}
+    </div>
 
     </div>
   );
