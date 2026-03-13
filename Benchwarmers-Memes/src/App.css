@@ -19,6 +19,17 @@
   --button-bg: #005bb5;
 }
 
+
+
+.shadow-stroke {
+  padding: 10px; /* Optional padding around the text */
+  color: white; /* Text fill color */
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
 div {
   margin: 0;
   padding: 0;
@@ -65,7 +76,7 @@ header {
 
 .controls {
   flex: 1;
-  max-width: 800px;
+  width: fit-content;
   background-color: var(--panel-bg);
   padding: 25px;
   border: 1px solid var(--border-color);
