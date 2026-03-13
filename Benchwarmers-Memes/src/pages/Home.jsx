@@ -1,6 +1,7 @@
 import { fetchDuckImages } from "../services/imageService";
 import { fetchQuotes } from "../services/quoteService";
 import { combineContent } from "../utils/combineContent";
+import { downloadImage } from "../utils/downloadImage";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -54,11 +55,21 @@ export default function Home() {
                     color: 'white',
                     fontSize: '2rem',
                     textAlign: 'center',
+                    pointerEvents: 'none',
                   }}>
                     <p className="shadow-stroke">
                       "{item.quote}" <br></br>- {item.author}
                     </p>
                   </div>
+
+                  <button 
+                    type="button" 
+                    onClick={() => downloadImage(item.image)} 
+                    style={{ marginTop: '10px', position: 'relative', zIndex: 10, cursor: 'pointer' }}
+                  >
+                    Download Meme
+                  </button>
+                  
                 </div>
               ))}
             <button type="button" onClick={handleUpdate}>Update Image & Quote</button>
