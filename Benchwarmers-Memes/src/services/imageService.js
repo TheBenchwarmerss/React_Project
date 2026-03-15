@@ -1,4 +1,4 @@
-export async function fetchDuckImages(count = 3) {
+export async function fetchDuckImages(count = 1) {
   const requests = [];
 
   for (let i = 0; i < count; i++) {

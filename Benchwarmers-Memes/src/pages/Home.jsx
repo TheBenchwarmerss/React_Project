@@ -12,8 +12,8 @@ export default function Home({ navigate }) {
   const memeRef = useRef(null);
 
   useEffect(() => {
-    fetchDuckImages().then(setImages);
-    fetchQuotes().then(setQuotes);
+    fetchDuckImages(1).then(setImages);
+    fetchQuotes(1).then(setQuotes);
     setFavorites(fetchFavorites());
   }, []);
 

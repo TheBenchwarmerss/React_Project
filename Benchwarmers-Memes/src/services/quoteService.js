@@ -1,4 +1,4 @@
-export async function fetchQuotes(count = 3) {
+export async function fetchQuotes(count = 1) {
   const requests = [];
 
   for (let i = 0; i < count; i++) {
@@ -6,14 +6,10 @@ export async function fetchQuotes(count = 3) {
       fetch('/api/quotes').then(res => res.json())
     );
   }
-
-  const responses = await Promise.all(requests);
-
-  return responses
-    .flatMap((quote) => (Array.isArray(quote) ? quote : [quote]))
-    .filter(Boolean)
-    .map((q) => ({
-      text: q.q ?? q.text ?? '',
-      author: q.a ?? q.author ?? 'Unknown',
-    }));
+  
+  const results = await Promise.all(requests);
+  return results.map(data => ({
+    text: data.quote,
+    author: data.author
+  }));
 }
