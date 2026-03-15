@@ -4,10 +4,11 @@ import { combineContent } from "../utils/combineContent";
 import { downloadImage } from "../utils/downloadImage";
 import { useState, useEffect } from "react";
 
-export default function Home() {
+export default function Home({ navigate }) {
 
   const [quotes, setQuotes] = useState([]);
   const [images, setImages] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   console.log(quotes);
   console.log(images);
@@ -16,7 +17,19 @@ export default function Home() {
   useEffect(() => {
     fetchDuckImages().then(setImages);
     fetchQuotes().then(setQuotes);
+    setFavorites(fetchFavorites());
   }, []);
+
+  
+  function fetchFavorites() {
+    const storedFavorites = localStorage.getItem('favorites');
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  }
+  function addFavorite(text, image) {
+    const newFavorite = { text, image };
+    localStorage.setItem('favorites', JSON.stringify([...favorites, newFavorite]));
+    setFavorites([...favorites, newFavorite]);
+  }
 
   const content = combineContent(images, quotes);
   
@@ -31,14 +44,18 @@ export default function Home() {
 
     <input type="checkbox" id="theme-toggle" />
 
-    <div class="site-wrapper">
+    <div className="site-wrapper">
         <header>
-            <div class="brand">Meme Generator</div>
-            <label for="theme-toggle" class="theme-label">Toggle Dark Mode</label>
+            <div className="brand">Meme Generator</div>
+            <nav>
+            <button type="button" onClick={() => navigate('home')}>Home</button>
+            <button type="button" onClick={() => navigate('favorites')}>Favorites</button>
+          </nav>
+            <label htmlFor="theme-toggle" className="theme-label">Toggle Dark Mode</label>
         </header>
 
-        <div class="main-content">
-            <div class="controls" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className="main-content">
+            <div className="controls" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               {content.map((item, index) => (
                 <div key={index} style={{ position: 'relative', display: 'inline-block', marginBottom: '30px' }}>
                   <img src={item.image} height="500" style={{ display: 'block' }} />
@@ -61,19 +78,21 @@ export default function Home() {
                       "{item.quote}" <br></br>- {item.author}
                     </p>
                   </div>
-
-                  <button 
-                    type="button" 
-                    onClick={() => downloadImage(item.image)} 
-                    style={{ marginTop: '10px', position: 'relative', zIndex: 10, cursor: 'pointer' }}
-                  >
-                    Download Meme
-                  </button>
-                  
                 </div>
               ))}
-            <button type="button" onClick={handleUpdate}>Update Image & Quote</button>
-          </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <button 
+                type="button" 
+                onClick={() => content[0] && downloadImage(content[0].image)} 
+                style={{ marginTop: '10px', position: 'relative', zIndex: 10, cursor: 'pointer' }}
+              >
+                Download Image
+              </button>
+              <button type="button" onClick={() => content[0] && addFavorite(content[0].quote, content[0].image)}>Add to Favorites</button>
+              <button type="button" onClick={handleUpdate}>Update Image & Quote</button>
+            </div>
         </div>
       </div>
     </div>

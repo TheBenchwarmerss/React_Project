@@ -42,6 +42,8 @@ div {
   min-height: 100vh;
 }
 
+
+
 header {
   display: flex;
   justify-content: space-between;
@@ -110,6 +112,7 @@ button {
   border: none;
   font-size: 16px;
   cursor: pointer;
+  margin: 10px 0;
 }
 
 button:hover {
@@ -133,4 +136,19 @@ button:hover {
   justify-content: center;
   align-items: center;
   color: var(--border-color);
+}
+nav button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+nav button:hover {
+  text-decoration: underline;
+}
+nav {
+  display: flex;
+  align-items: center;
 }
