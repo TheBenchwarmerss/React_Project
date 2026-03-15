@@ -11,6 +11,6 @@ export async function fetchDuckImages(count = 3) {
   const results = await Promise.all(requests);
 
   return results.map(img => ({
-    url: img.url
+    url: `https://wsrv.nl/?url=${encodeURIComponent(img.url)}`
   }));
 }

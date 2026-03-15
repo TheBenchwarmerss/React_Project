@@ -8,5 +8,8 @@
     "build": "cd Benchwarmers-Memes && npm run build",
     "lint": "cd Benchwarmers-Memes && npm run lint",
     "preview": "cd Benchwarmers-Memes && npm run preview"
+  },
+  "dependencies": {
+    "html2canvas": "^1.4.1"
   }
 }
