@@ -1,9 +1,10 @@
 export const handler = async (event) => {
   const response = await fetch(`https://stoic.tekloon.net/stoic-quote`);
-  const data = await response.json();
+  const rawBody = await response.text();
+  JSON.parse(rawBody);
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    body: rawBody,
   };
 };
