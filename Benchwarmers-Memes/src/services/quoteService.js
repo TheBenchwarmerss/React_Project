@@ -1,5 +1,5 @@
 export async function fetchQuotes(count = 3) {
-  const response = await fetch(`https://corsproxy.io/?https://zenquotes.io/api/random/${count}?v=${Date.now()}`)
+  const response = await fetch(`/api/quotes?count=${count}`);
   const data = await response.json();
 
   return data.map(q => ({
